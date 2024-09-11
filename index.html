@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TPT2 Farm Timer | Z100Fire</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="favicon.png">
+</head>
+<body class="center">
+    <div class="misc">
+        <h1 class="center title">Theme Park Tycoon 2 | Farm Timer</h1>
+    </div>
+    <div class="form-container">
+        <div class="form center">
+            <div class="label">
+                <input class="name" placeholder="Add a label to your timing"></input>
+            </div>
+            <div class="stats">
+                <input type="date" class="start"><input type="time" step="1" class="start"><br>
+                <input type="text" class="start" placeholder="Money goes here"><br>
+                <h1 class="center">--------------------</h1>
+                <input type="date" class="end"><input type="time" step="1" class="end"><br>
+                <input type="text" class="end" placeholder="Money goes here"><br>
+                <button class="calculate">Calculate</button>
+            </div>
+            <div class="result">
+                <div>
+                    <button class="minute selected">Per Minute</button>
+                    <button class="hour">Per Hour</button>
+                    <button class="day">Per Day</button>
+                </div>
+                <div>
+                    <h1 class="display">Result: [Blank]</h1>
+                    <h2 class="display">Time: [Blank]</h1>
+                </div>
+            </div>
+            <h2><br>--------------------</h2>
+            <button class="clearHistory">Clear History</button>
+            <div class="history-container">
+                
+            </div>
+        </div>
+    </div>
+    <script src="index.js"></script>
+</body>
+</html>
