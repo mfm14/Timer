@@ -7,7 +7,7 @@ const time = (e) => e.replace(/(.{2})(.{2})(.{2})/, '$1:$2:$3');
 const get = (e) => localStorage.getItem(e);
 const save = (e, x) => localStorage.setItem(e, x);
 const sh = () => save(historyVersion, JSON.stringify(history));
-const unformat = (e) => e.replace(/[$, ]/g, '');
+const unformat = (e) => e.replace(/[$, a-zA-Z]/g, '');
 // Variables
 const historyVersion = "historyV1";
 let result = [
@@ -79,7 +79,7 @@ function perform() {
     let time = [new Date(dates[0].value + " " + times[0].value), new Date(dates[1].value + " " + times[1].value)]
     let elapsed = (time[1] - time[0]) / 60000;
     if(isNaN(gain / elapsed)) {
-        throw new Error("Code: 0, Invalid input data");
+        throw new Error("Invalid input data (Code 0)");
     }
     setResult(gain / elapsed, elapsed * 60)
     update();
@@ -149,23 +149,15 @@ async function magic(input, index) {
     formData.append('file', imageFile);
     try {
         const response = await fetch('https://api.ocr.space/parse/image', {
-            method: 'POST',
-            body: formData,
-            headers: {
-                'apikey': 'K81112434088957', // guys please dont steal my api key :(
-            },
-        });
-        const result = await response.json();
+            method: 'POST', body: formData, headers: { 'apikey': 'K81112434088957' }, // guys please dont steal my api key :(
+        }), result = await response.json();
         if(!result.ParsedResults) {
-            console.log("%c NO IMAGE ? ?? ??? ??????? (Code 2) (!!!!)", "color: red; font-weight: bold;");
-            return false; // this should NOT happen
+            throw new Error("No image to read :( (Code 1)");
         }
-        // if(isNaN(parseInt(unformat(result.ParsedResults[0].ParsedText)))) {
-        //     throw new Error("OCR Text Misregonization (Code 1)")
-        // }
-        const formatted = format(unformat(result.ParsedResults[0].ParsedText)); // listen, this is weird but it works
-        print(formatted);
-        money[index].value = formatted;
+        if(isNaN(parseInt(unformat(result.ParsedResults[0].ParsedText)))) {
+            throw new Error("OCR Text Misregonization (Code 2)");
+        }
+        money[index].value = format(unformat(result.ParsedResults[0].ParsedText)); // format unformat :)
     } catch (error) {
         console.error(error);
     }
