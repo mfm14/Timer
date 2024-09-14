@@ -101,6 +101,7 @@ body {
     padding: 15px;
     margin: 10px;
     overflow: auto;
+    text-align: center;
 }
 
 .name {
@@ -175,6 +176,12 @@ body {
     min-height: 100px;
     border-radius: 8px;
     box-shadow: 0 0 8px rgba(255, 255, 255, 0.75);
+    cursor: pointer;
+    transition: 0.4s;
+}
+
+.history:hover {
+    filter: brightness(0.7);
 }
 
 input[type="date"],
@@ -194,4 +201,10 @@ input[type="date"] {
 input[type="date"]:nth-child(1),
 input[type="date"]:nth-child(1) {
     margin-top: 10px;
+}
+
+input[type="file"] {
+    margin-top: 3px;
+    padding: 10px;
+    width: 100px;
 }
