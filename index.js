@@ -9,14 +9,14 @@ const save = (e, x) => localStorage.setItem(e, x);
 const sh = () => save(historyVersion, JSON.stringify(history));
 const unformat = (e) => e.replace(/[$, a-zA-Z]/g, '');
 // Variables
-const historyVersion = "historyV1";
+const historyVersion = "historyV2";
 let result = [
     minute = 0,
     hour = 0,
     day = 0,
     elapsed = 0,
 ]
-let history = JSON.parse(get(historyVersion)) || {};
+let history = JSON.parse(get(historyVersion)) || [];
 let selected = "minute";
 let historyTemplate = "<div onclick='viewHistory();' oncontextmenu='historyDelete(); return false;' class='history'><h1>$name</h1><h1>$result</h1></div>";
 // Elements
@@ -85,7 +85,7 @@ function perform() {
 }
 
 function addHistory() {
-    history[Object.keys(history).length + 1] = [label.value || "Blank", Math.floor(result["minute"]), result["elapsed"]];
+    history.push([label.value || "[Blank]", result["minute"].toFixed(0), result["elapsed"]]);
     updateHistory();
 }
 
