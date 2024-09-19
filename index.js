@@ -85,17 +85,17 @@ function perform() {
 }
 
 function addHistory() {
-    history[Object.keys(history).length] = [label.value || "Blank", Math.floor(result["minute"]), result["elapsed"]];
+    history[Object.keys(history).length + 1] = [label.value || "Blank", Math.floor(result["minute"]), result["elapsed"]];
     updateHistory();
 }
 
 function updateHistory() {
     historyContainer.innerHTML = "";
-    for(i = 0; i < Object.keys(history).length; i++) {
-        let html = historyTemplate.replace("$name", "Label: " + history[i][0]);
-        html = html.replace("$result", "Result: " + format(history[i][1]));
-        html = html.replace("y()", `y("${history[i][1]}", "${history[i][2]}")`);
-        html = html.replace("e()", `e(${i})`);
+    for(x in history) {
+        let html = historyTemplate.replace("$name", "Label: " + history[x][0]);
+        html = html.replace("$result", "Result: " + format(history[x][1]));
+        html = html.replace("y()", `y("${history[x][1]}", "${history[x][2]}")`);
+        html = html.replace("e()", `e(${x})`);
         historyContainer.innerHTML = historyContainer.innerHTML + html;
     }
     sh();
