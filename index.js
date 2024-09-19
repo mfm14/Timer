@@ -22,11 +22,11 @@ let historyTemplate = "<div onclick='viewHistory();' oncontextmenu='historyDelet
 // Elements
 const title = $("h1.title");
 const label = $("input.name");
+const calculate = $(".calculate");
+const clearHistory = $(".clearHistory");
+const historyContainer = $(".history-container");
 const display = [$("h1.display"), $("h2.display")];
 const results = [$("button.minute"), $("button.hour"), $("button.day")];
-const historyContainer = $(".history-container");
-const clearHistory = $(".clearHistory");
-const calculate = $(".calculate");
 const dates = [$("input[type='date'].start"), $("input[type='date'].end")];
 const times = [$("input[type='time'].start"), $("input[type='time'].end")];
 const money = [$("input[type='text'].start"), $("input[type='text'].end")];
@@ -42,19 +42,17 @@ calculate.addEventListener("click", () => {perform()});
 clearHistory.addEventListener("click", removeHistory)
 updateHistory();
 // Main Code
+function formatTime(secs) {
+    const d = Math.floor(secs / (3600 * 24)).toString().padStart(2, "0"), h = Math.floor((secs % (3600 * 24)) / 3600).toString().padStart(2, "0"),
+    m = Math.floor((secs % 3600) / 60).toString().padStart(2, "0"), s = Math.floor(secs % 60).toString().padStart(2, "0");
+    return `${d}:${h}:${m}:${s}`;
+}
+
 function toggleResult(choice) {
     results.forEach(element => element.classList.remove("selected"));
     choice.classList.add("selected");
     selected = choice.classList[0];
     update();
-}
-
-function formatTime(secs) {
-    const d = Math.floor(secs / (3600 * 24)).toString().padStart(2, "0"),
-        h = Math.floor((secs % (3600 * 24)) / 3600).toString().padStart(2, "0"),
-        m = Math.floor((secs % 3600) / 60).toString().padStart(2, "0"),
-        s = Math.floor(secs % 60).toString().padStart(2, "0");
-    return `${d}:${h}:${m}:${s}`;
 }
 
 function setResult(money, time) {
@@ -155,10 +153,8 @@ async function magic(input, index) {
             throw new Error("No image to read :( (Code 1)");
         }
         if(isNaN(parseInt(unformat(result.ParsedResults[0].ParsedText)))) {
-            throw new Error("OCR Text Misregonization (Code 2)");
+            throw new Error("OCR Text Misregonization/Invalid Image (Code 2)");
         }
         money[index].value = format(unformat(result.ParsedResults[0].ParsedText)); // format unformat :)
-    } catch (error) {
-        console.error(error);
-    }
+    } catch (error) {console.error(error)};
 }

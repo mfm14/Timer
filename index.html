@@ -3,16 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:image" content="favicon.png">
+    <meta property="og:title" content="Time Money Farms"/>
+    <meta property="og:description" content="A basic tool for timing money farms" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://mfm14.github.io/Timer/" />
     <title>TPT2 Farm Timer | Z100Fire</title>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/x-icon" href="favicon.png">
 </head>
 <body class="center">
     <div class="misc">
-        <h1 class="center title">Theme Park Tycoon 2 | Farm Timer</h1>
+        <h1 class="title">Theme Park Tycoon 2 | Farm Timer</h1>
     </div>
     <div class="form-container">
         <div class="form center">
+            <i class="instruction-opener fa-solid fa-question" title="Redo instructions"></i>
             <div class="label">
                 <input class="name" placeholder="Add a label to your timing"></input>
             </div>
@@ -37,13 +43,35 @@
                     <h2 class="display">Time: [Blank]</h1>
                 </div>
             </div>
-            <h2><br>--------------------</h2>
+            <h1><br>--------------------</h1>
             <button class="clearHistory">Clear History</button>
             <div class="history-container">
                 
             </div>
         </div>
     </div>
+    <div class="instructions-container">
+        <div class="instructions">
+            <div class="initalize">
+                <h1>It appears this is your first time visiting the website! (Or restarted the instructions!)</h1>
+                <h2>Would you like to see the instructions?</h2>
+                <button class="start-instructions"><i class="fa-solid fa-check"></i>Start</button>
+                <button class="skip-instructions"><i class="fa-solid fa-x"></i>Skip</button>
+            </div>
+            <div class="display">
+                <h1 class="instructions-title"></h1>
+                <h2 class="descriptions-title"></h2>
+                <img width="200" height="60" class="image-instructions" src="" alt="Example of a money screenshot">
+                <div class="dir">
+                    <button class="last-instructions"><i class="fa-solid fa-arrow-left last-icon"></i>Back</button>
+                    <button class="next-instructions"><i class="fa-solid fa-arrow-right next-icon"></i>Next</button>
+                </div>
+                <h2 class="instructions-counter">0/4</h1>
+            </div>
+        </div>
+    </div>
     <script src="index.js"></script>
+    <script src="instruction.js"></script>
+    <script src="https://kit.fontawesome.com/180d0b785d.js" crossorigin="anonymous"></script>
 </body>
 </html>
