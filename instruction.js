@@ -59,7 +59,7 @@ function transition() {
         instructions_counter.innerText = `${page}/4`;
         instructions_display.style.opacity = "1";
         if(page === 4) {
-            next_page.innerText = "Start!";
+            next_page.innerText = "Begin!";
         }
     }, 500)
 }

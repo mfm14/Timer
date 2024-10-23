@@ -117,8 +117,8 @@ function viewHistory(money, time) {
 }
 
 function removeHistory() {
-    history = "";
-    localStorage.clear();
+    history = [];
+    localStorage.removeItem(historyVersion);
     updateHistory();
 }
 
