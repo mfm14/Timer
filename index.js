@@ -92,11 +92,15 @@ function addHistory() {
 function updateHistory() {
     historyContainer.innerHTML = "";
     for(x in history) {
-        let html = historyTemplate.replace("$name", "Label: " + history[x][0]);
-        html = html.replace("$result", "Result: " + format(history[x][1]));
-        html = html.replace("y()", `y("${history[x][1]}", "${history[x][2]}")`);
-        html = html.replace("e()", `e(${x})`);
-        historyContainer.innerHTML = historyContainer.innerHTML + html;
+        if(history[x]) {
+            let html = historyTemplate.replace("$name", "Label: " + history[x][0]);
+            html = html.replace("$result", "Result: " + format(history[x][1]));
+            html = html.replace("y()", `y("${history[x][1]}", "${history[x][2]}")`);
+            html = html.replace("e()", `e(${x})`);
+            historyContainer.innerHTML = historyContainer.innerHTML + html;
+        } else {
+            continue; // possible bugged history state squasher
+        }
     }
     sh();
 }
